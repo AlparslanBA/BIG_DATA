@@ -26,3 +26,18 @@ ss2012 <- ddply(df2012v1,.(ALDER, BYDEL),summarize,sum=sum(PERSONER),number=leng
 attach(ss2012)
 
 plot3d(ss2012$ALDER, ss2012$BYDEL, ss2012$sum)
+
+######################## KØBENHAVN 1992 ########################
+
+kbh1992 <- subset(kbhbefolkning,(AAR == 1992))
+
+df1992 = data.frame(kbh1992$BYDEL, kbh1992$ALDER, kbh1992$PERSONER)
+names(df1992) <-  c('BYDEL','ALDER','PERSONER')
+
+df1992v1 = subset(df1992,(BYDEL !=99))
+
+ss1992 <- ddply(df1992v1,.(ALDER, BYDEL),summarize,sum=sum(PERSONER),number=length(ALDER))
+
+attach(ss1992)
+
+plot3d(ss1992$ALDER, ss1992$BYDEL, ss1992$sum)
